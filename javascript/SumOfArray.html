@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p>Array is : [10,20,30,40,50,60,70,80,90,100]</p>
+    <p id="forEachDisplay"></p>
+    <p id="mapDisplay"></p>
+    <p id="reduceDisplay"></p>
+
+    <script>
+        let arrayAsString = "10,20,30,40,50,60,70,80,90,100";
+        document.getElementById("forEachDisplay").innerHTML = "Sum by for Each is : " + sumOfArrayUsingForEach(arrayAsString);
+        document.getElementById("mapDisplay").innerHTML = "Sum is map method : " + sumOfArrayUsingMap(arrayAsString);
+        document.getElementById("reduceDisplay").innerHTML = "Sum is reduce method : " + sumOfArrayUsingReduce(arrayAsString);
+
+        function sumOfArrayUsingForEach(str) {
+
+            let array = str.split(",");
+
+            let sum = 0;
+
+            array.forEach(forEachFunction);
+
+            function forEachFunction(element) {
+
+                sum = sum + Number(element);
+            }
+
+            return sum;
+        }
+
+        function sumOfArrayUsingMap(str) {
+
+            let array = str.split(",");
+            let sum = 0;
+
+            array.map(mapfunction);
+
+            function mapfunction(value) {
+
+                sum = sum + Number(value);
+            }
+
+            return sum;
+        }
+
+        function sumOfArrayUsingReduce(str) {
+
+            let array = str.split(",");
+            let sum = array.reduce(reducefunction);
+
+            function reducefunction(total, value) {
+
+                return Number(total) + Number(value);
+            }
+
+            return sum;
+        }
+    </script>
+
+</body>
+
+</html>

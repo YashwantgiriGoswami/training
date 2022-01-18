@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p id="method1"></p>
+    <p id="method2"></p>
+    <p id="method3"></p>
+
+    <h1>Thank you</h1>
+
+    <script>
+        let firstArray = [10, 20, 30, 40, 50];
+        let secondArray = [60, 70, 80, 90, 100];
+
+        document.getElementById("method1").innerHTML = "array.concat() => " + mergeArrayByConcat(firstArray, secondArray);
+        document.getElementById("method2").innerHTML = "spread operator => " + mergeArrayBySpread(firstArray, secondArray);
+        document.getElementById("method3").innerHTML = "array.push()  => " + mergeArrayByPush(firstArray, secondArray);
+
+
+        function mergeArrayByConcat(frontArray, endArray) {
+
+            return frontArray.concat(endArray);
+
+        }
+
+        function mergeArrayBySpread(frontArray, endArray) {
+
+            return [...frontArray, ...endArray];
+
+        }
+
+        function mergeArrayByPush(frontArray, endArray) {
+
+            frontArray.push(...endArray)
+            return frontArray;
+
+        }
+    </script>
+
+</body>
+
+</html>
