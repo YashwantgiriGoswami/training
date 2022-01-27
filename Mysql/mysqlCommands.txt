@@ -83,11 +83,13 @@ insert into yashwantgirig.salary(emp_id, salary_month, salary_year, salary_amoun
 Question 2:
 +++++++++++
 
-select ed.emp_id, ed.emp_name, ed.join_date, ed.end_date, s.salary_id, s.salary_month, s.salary_year,
- s.salary_amount, s.salary_date, ed.dept_id, ed.dept_name, ed.dept_created_date from yashwantgirig.salary as s 
- Inner Join (Select d.dept_id, d.dept_name, d.dept_created_date, e.emp_id, e.emp_name, e.join_date, 
- e.end_date from yashwantgirig.department as d Inner Join yashwantgirig.employee as e on e.dept_id = d.dept_id) as ed 
- on  s.emp_id = ed.emp_id;
+select e.emp_id, e.emp_name, e.join_date, e.end_date, s.salary_id, s.salary_month, s.salary_year,
+ s.salary_amount, s.salary_date, d.dept_id, d.dept_name, d.dept_created_date 
+ from yashwantgirig.employee as e 
+ left Join yashwantgirig.department as d
+ on e.dept_id = d.dept_id
+ left join yashwantgirig.salary as s
+ on  s.emp_id = e.emp_id;
 
 
 Question 3:
