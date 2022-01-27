@@ -1,0 +1,144 @@
+create table yashwantgirig.department(
+	dept_id int unsigned primary key,
+    dept_name varchar(30),
+    dept_created_date date
+);
+
+
+create table yashwantgirig.employee(
+	emp_id int unsigned auto_increment,
+    emp_name varchar(30),
+    dept_id int unsigned,
+    join_date date,
+    end_date date DEFAULT (CURRENT_DATE()),
+    Primary key (emp_id),
+	foreign key (dept_id) references department(dept_id) 
+    on delete set null
+    on update cascade
+);
+
+
+
+create table yashwantgirig.salary(
+	salary_id int unsigned auto_increment,
+    emp_id int unsigned not null,
+    salary_month int,
+    salary_year int,
+    salary_amount int,
+    salary_date date not null,
+    Primary key (salary_id),
+	foreign key (emp_id) references employee(emp_id) 
+    on delete cascade
+    on update cascade
+);
+
+
+
+Question 1:
++++++++++++
+
+department table insertion operation :
+#####################################
+
+insert into yashwantgirig.department values(101,"Computer","1999-10-29");
+
+insert into yashwantgirig.department values(102,"Information Technology","2000-01-04");
+
+insert into yashwantgirig.department values(103,"Chemical","2001-03-16");
+
+insert into yashwantgirig.department values(104,"Electrical","2000-01-05");
+
+insert into yashwantgirig.department values(105,"Civil","2000-08-04");
+
+
+employee table insertion operation :
+###################################
+
+insert into yashwantgirig.employee(emp_name,dept_id,join_date) values("Yashwant",101,"2022-01-03");
+
+insert into yashwantgirig.employee(emp_name,dept_id,join_date) values("Keyur",102,"2022-01-01");
+
+insert into yashwantgirig.employee(emp_name,dept_id,join_date) values("Yash",103,"2022-01-01");
+
+insert into yashwantgirig.employee(emp_name,dept_id,join_date) values("Nishit",104,"2022-01-03");
+
+insert into yashwantgirig.employee(emp_name,dept_id,join_date) values("Abhishek",105,"2022-01-03");
+
+
+
+salary table insertion operation :
+###################################
+
+insert into yashwantgirig.salary(emp_id, salary_month, salary_year, salary_amount,salary_date) values(1,2,2022,25000,"2022-02-03");
+
+insert into yashwantgirig.salary(emp_id, salary_month, salary_year, salary_amount,salary_date) values(2,2,2022,15000,"2022-02-03");
+
+insert into yashwantgirig.salary(emp_id, salary_month, salary_year, salary_amount,salary_date) values(3,2,2022,15000,"2022-02-03");
+
+insert into yashwantgirig.salary(emp_id, salary_month, salary_year, salary_amount,salary_date) values(4,2,2022,15000,"2022-02-03");
+
+insert into yashwantgirig.salary(emp_id, salary_month, salary_year, salary_amount,salary_date) values(5,2,2022,15000,"2022-02-03");
+
+
+Question 2:
++++++++++++
+
+select ed.emp_id, ed.emp_name, ed.join_date, ed.end_date, s.salary_id, s.salary_month, s.salary_year,
+ s.salary_amount, s.salary_date, ed.dept_id, ed.dept_name, ed.dept_created_date from yashwantgirig.salary as s 
+ Inner Join (Select d.dept_id, d.dept_name, d.dept_created_date, e.emp_id, e.emp_name, e.join_date, 
+ e.end_date from yashwantgirig.department as d Inner Join yashwantgirig.employee as e on e.dept_id = d.dept_id) as ed 
+ on  s.emp_id = ed.emp_id;
+
+
+Question 3:
++++++++++++
+
+department table updation operation :
+#####################################
+
+update yashwantgirig.department 
+set dept_id = 109
+where dept_id =105;
+
+
+employee table updation operation :
+#####################################
+
+update yashwantgirig.employee 
+set dept_id = 102
+where emp_id = 4;
+
+
+
+salary table updation operation :
+#####################################
+
+update yashwantgirig.salary 
+set salary_month = 3
+where salary_id = 4;
+
+
+
+Question 4:
++++++++++++
+
+department table deletion operation :
+#####################################
+
+delete from yashwantgirig.department 
+where dept_id =109;
+
+
+employee table deletion operation :
+#####################################
+
+delete from yashwantgirig.employee 
+where dept_id is null ;
+
+
+salary table deletion operation :
+#####################################
+
+delete from yashwantgirig.salary 
+where salary_id = 4;
+
