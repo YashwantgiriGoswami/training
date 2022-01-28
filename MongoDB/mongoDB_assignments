@@ -1,0 +1,110 @@
+
+######## Database Created #########
+
+use yashwantDB
+
+
+######## Collections Created ########
+
+db.createCollection('department')
+
+db.createCollection('employee')
+
+db.createCollection('salary')
+
+
+Question 1:
++++++++++++
+
+department collection insertion operation :
+###########################################
+
+
+db.department.insertMany([
+        {department_id:101, department_name:'Computer', department_created_on:'1999-10-29'},
+        {department_id:102, department_name:'Infomation Technology', department_created_on:'2000-01-01'},
+        {department_id:103, department_name:'Chemical', department_created_on:'2001-03-16'},
+        {department_id:104, department_name:'Electrical', department_created_on:'2000-01-05'},
+        {department_id:105, department_name:'Civil', department_created_on:'1999-10-30'}
+    ])
+
+
+employee collection insertion operation :
+#########################################
+                
+
+db.employee.insertMany([
+        {employee_id:1,employee_name:'Yashwant',department_id:101,join_date:'2022-01-03',end_date:'2022-01-28'},
+        {employee_id:2,employee_name:'Keyur',department_id:102,join_date:'2022-01-03',end_date:'2022-01-28'},
+        {employee_id:3,employee_name:'Yash',department_id:103,join_date:'2022-01-03',end_date:'2022-01-28'},
+        {employee_id:4,employee_name:'Nishit',department_id:104,join_date:'2022-01-03',end_date:'2022-01-28'},
+        {employee_id:5,employee_name:'Abhishek',department_id:105,join_date:'2022-01-03',end_date:'2022-01-28'}
+    ])
+
+
+salary collection insertion operation :
+#######################################
+                
+
+db.salary.insertMany([
+        {salary_id:1,employee_id:1,salary_month:2,salary_year:2022,salary_amount:25000,salary_date:'2022-02-03'},
+        {salary_id:2,employee_id:2,salary_month:2,salary_year:2022,salary_amount:15000,salary_date:'2022-02-03'},
+        {salary_id:3,employee_id:3,salary_month:2,salary_year:2022,salary_amount:20000,salary_date:'2022-02-03'},
+        {salary_id:4,employee_id:4,salary_month:2,salary_year:2022,salary_amount:5000,salary_date:'2022-02-03'},
+        {salary_id:5,employee_id:5,salary_month:2,salary_year:2022,salary_amount:15000,salary_date:'2022-02-03'}
+    ])
+
+
+
+Question 2:
++++++++++++
+
+db.employee.aggregate([
+        {$lookup: {from:'department', localField:'department_id', foreignField:'department_id', as:'Department Details'}},
+        {$lookup: {from:'salary', localField:'employee_id', foreignField:'employee_id', as:'Salary Details'}}
+    ]).pretty()
+
+
+
+Question 3:
++++++++++++
+    
+department collection updation operation :
+#####################################
+
+db.department.updateOne({department_id:105},{$set: {department_name:'Mechanical'}})
+
+
+employee collection updation operation :
+#####################################
+
+db.employee.updateOne({employee_id:1},{$set: {employee_name:'Yashwant Giri'}})
+
+
+
+salary collection updation operation :
+#####################################
+
+db.salary.updateOne({salary_id:1},{$set: {salary_amount:50000}})
+
+
+
+Question 4:
++++++++++++
+
+department collection deletion operation :
+#####################################
+
+db.department.deleteOne({department_id:104})
+
+
+employee collection deletion operation :
+#####################################
+
+db.employee.deleteOne({employee_id:4})
+
+
+salary collection deletion operation :
+#####################################
+
+db.salary.deleteOne({salary_id:4})
