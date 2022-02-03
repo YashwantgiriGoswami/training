@@ -21,6 +21,7 @@ $(document).ready(function() {
 
     $('ul.list li button').on('click', function() {
 
+
         var item = $(this).text().replace(/ /g, "-");
 
         $.ajax({
