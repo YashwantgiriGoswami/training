@@ -1,0 +1,90 @@
+body {
+    background-color: rgb(4, 6, 14);
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    font-size: 60px;
+    font-family: verdana;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#logo {
+    height: 40px;
+    width: 40px;
+    text-transform: uppercase;
+    border-radius: 100px;
+    font-size: medium;
+    background-color: grey;
+    color: white;
+}
+
+div.login {
+    margin: auto;
+    margin-top: 100px;
+    border: 2px solid gray;
+    border-radius: 12px;
+    width: 600px;
+    height: 300px;
+}
+
+div.login input {
+    height: 35px;
+    width: 400px;
+    margin-top: 100px;
+    border-radius: 12px;
+    padding-left: 15px;
+}
+
+div.login button {
+    height: 40px;
+    width: 120px;
+    border-radius: 12px;
+    font-size: medium;
+    background-color: grey;
+    color: white;
+}
+
+#insertion {
+    margin: auto;
+    margin-top: 20px;
+}
+
+#input {
+    height: 35px;
+    width: 600px;
+    border-radius: 12px;
+    padding-left: 15px;
+}
+
+#button {
+    height: 40px;
+    width: 120px;
+    border-radius: 12px;
+    font-size: medium;
+    background-color: grey;
+    color: white;
+}
+
+#display {
+    margin-top: 40px;
+    width: 400px;
+    margin-left: 270px;
+}
+
+ul.list li button:hover {
+    text-decoration: line-through;
+    font-size: 30px;
+}
+
+ul.list li button {
+    width: 400px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: rgb(4, 6, 14);
+    border: 2px solid gray;
+    color: white;
+}

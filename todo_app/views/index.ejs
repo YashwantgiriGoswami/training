@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Todo List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href='/assets/style.css' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <h1>
+        <%= user.user %> TODO &emsp; &emsp;
+            <a href="/"><button id="logo"><strong><%= user.user.substring(0,1); %></strong></button></a>
+    </h1>
+    <form method="post" action="/index">
+        <table id="insertion">
+            <tr>
+                <td><input id="input" type="text" name="item" placeholder="Enter item here.." required/></td>
+                <td><button id="button" type="submit"><strong>Add Item</strong></button></td>
+            </tr>
+        </table>
+    </form>
+    <div id="display">
+
+        <ul class='list' type='none'>
+            <% for(var i=0; i < todo_item.length; i++ ){%>
+                <li>
+                    <form action="/index/<%=todo_item[i].item.replace(/ /g,'-') %>">
+
+                        <button>
+                    <%= todo_item[i].item %>
+                </button></form>
+                </li>
+                <%};%>
+        </ul>
+    </div>
+</body>
+
+</html>
