@@ -1,0 +1,52 @@
+.navbar {
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.navbar {
+    background-image: linear-gradient(to right, blue, black);
+}
+
+.navbar-brand {
+    color: white;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+    border-radius: 250px;
+}
+
+.page-footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-image: linear-gradient(to right, blue, black);
+}
+
+.footer-copyright {
+    color: white;
+}
+
+#footer-name {
+    text-decoration: none;
+    color: white;
+}
+
+.heading {
+    text-align: center;
+    size: 60px;
+    margin-top: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#course-table {
+    margin: 30px;
+    width: 94%;
+}
