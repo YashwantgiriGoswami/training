@@ -1,15 +1,15 @@
 .navbar {
-    position: sticky;
-    top: 0px;
-    z-index: 10;
-}
-
-.navbar {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
     background-image: linear-gradient(to right, blue, black);
 }
 
 .navbar-brand {
     color: white;
+    text-decoration: none;
     text-transform: uppercase;
 }
 
@@ -24,19 +24,18 @@ img {
 }
 
 .page-footer {
-    position: fixed;
-    bottom: 0px;
+    position: fixed !important;
+    bottom: 0 !important;
     width: 100%;
     background-image: linear-gradient(to right, blue, black);
 }
 
-.footer-copyright {
-    color: white;
-}
-
-#footer-name {
+.footer-text {
     text-decoration: none;
     color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .heading {
@@ -47,6 +46,41 @@ img {
 }
 
 #course-table {
-    margin: 30px;
+    margin: auto;
+    margin-top: 100px;
     width: 94%;
+}
+
+.form-addcourse {
+    margin: auto;
+    margin-top: 150px;
+    width: 80%;
+}
+
+
+/* to hide the number button*/
+
+#course_fees::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+#message {
+    color: green;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+#empty-table-display {
+    text-align: center;
+    margin-top: 150px;
+}
+
+#icon {
+    height: 30px;
+    width: 30px;
+}
+
+#button-icon {
+    border: none;
 }

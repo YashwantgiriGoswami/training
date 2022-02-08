@@ -22,6 +22,67 @@
     <%- include('partials/nav.ejs') %>
 
 
+        <div class="form-addcourse">
+            <form method="post" action="/addCourse" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-4">
+                    <label for="course_name" class="form-label">Course Name</label>
+                    <input type="text" class="form-control" id="course_name" name="course_name" placeholder="Management" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide course name.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="course_duration" class="form-label">Duration</label>
+                    <input type="text" class="form-control" id="course_duration" name="course_duration" placeholder="3 year" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide course duration.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="course_fees" class="form-label">Fees</label>
+
+                    <input type="number" class="form-control" id="course_fees" name="course_fees" placeholder="3000" required>
+                    <div class="invalid-feedback">
+                        Please provide fees details.
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                    .forEach(function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
+
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+            })()
+        </script>
+
+
         <%- include('partials/footer.ejs') %>
             <!---Bootstrap separate--->
 
