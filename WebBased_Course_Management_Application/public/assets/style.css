@@ -47,11 +47,18 @@ img {
 
 #course-table {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 130px;
+    margin-bottom: 100px;
     width: 94%;
 }
 
 .form-addcourse {
+    margin: auto;
+    margin-top: 150px;
+    width: 80%;
+}
+
+.form-editcourse {
     margin: auto;
     margin-top: 150px;
     width: 80%;
@@ -64,16 +71,9 @@ img {
     -webkit-appearance: none;
 }
 
-#message {
-    color: green;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 60px;
-}
-
 #empty-table-display {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 25%;
 }
 
 #icon {
