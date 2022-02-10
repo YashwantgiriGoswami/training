@@ -1,86 +1,57 @@
-const body_parser = require('body-parser');
-
-const Sequelize = require('sequelize');
-
-var alert = require('alert');
-
-
-const Op = Sequelize.Op;
-
-const sequelize = require('../models/database');
-
 const courses = require('../models/courses');
 
-var dataFromDatabase = {};
+const message = require('../config/config');
 
-const urlencodedparser = body_parser.urlencoded({ extended: false });
+module.exports = {
 
-module.exports = function(app) {
-
-    //accepting the home page
-    app.get('/', function(req, res) {
-
-        sequelize.sync().then(() => {
-
-            dataFromDatabase = courses.findAll({
-                where: {
-                    id: {
-                        [Op.not]: null,
-                    }
-                }
-            }).then((order) => {
-                res.render('home', { data: order });
-            });
+    home: function(req, res) {
+        courses.findAll().then((order) => {
+            res.render('home', { data: order, message: message.message });
         });
-    });
-    //accepting the home page
-    app.get('/addCourse', function(req, res) {
-        res.render('addCourse');
-    });
+    },
 
-    app.post('/addCourse', urlencodedparser, function(req, res) {
+    getAddCourse: function(req, res) {
+        res.render('addCourse', { message: message.message });
+    },
 
+    postAddCourse: function(req, res) {
 
-        courses.create({ name: req.body.course_name, duration: req.body.course_duration, fees: req.body.course_fees });
-        alert("Added Successfully");
-        res.redirect("/");
+        let { name, duration, fees } = req.body;
 
-    });
+        courses.create({ name, duration, fees }).then(() => {
+            res.redirect("/");
+        });
+    },
 
-    app.get('/editCourse/:id', function(req, res) {
+    getEditCourse: function(req, res) {
 
         courses.findByPk(req.params.id).then((order) => {
 
-            res.render('editCourse', { data: order, row_id: req.params.id });
+            res.render('editCourse', { data: order, id: req.params.id, message: message.message });
 
         });
-    });
+    },
 
-    app.post('/editCourse', urlencodedparser, function(req, res) {
+    postEditCourse: function(req, res) {
+
+        let { id, name, duration, fees } = req.body;
 
         courses.update({
+            name: name,
+            duration: duration,
+            fees: fees
+        }, { where: { id: id } }).then(() => {
+            res.redirect("/");
+        });
+    },
 
-            name: req.body.course_name,
-            duration: req.body.course_duration,
-            fees: req.body.course_fees
-
-        }, { where: { id: req.body.row_id } });
-
-        alert("Updated Successfully");
-        res.redirect("/");
-
-    });
-
-    app.get('/deleteCourse/:id', function(req, res) {
-
+    getDelete: function(req, res) {
         courses.destroy({
             where: {
                 id: req.params.id
             }
+        }).then(() => {
+            res.redirect("/");
         });
-
-        alert("Deleted Successfully");
-        res.redirect("/");
-    });
-
+    }
 }

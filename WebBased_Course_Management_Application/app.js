@@ -1,23 +1,20 @@
 var express = require('express');
-
-// const database = require('./models/database');
+const database = require('./models/database');
 
 var app = express();
 
-var controllers = require('./controller/controller');
+const route = require('./router/route');
 
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
+database.sync().then((result) => {
+    console.log(result);
+}).catch((err) => {
+    console.log(err);
+});
 
-// database.sequelize.sync({ force: true }).then((result) => {
-//     console.log(result);
-// }).catch((err) => {
-//     console.log(err);
-// })
-
-
-controllers(app);
+app.use('/', route);
 
 app.listen(3000);
