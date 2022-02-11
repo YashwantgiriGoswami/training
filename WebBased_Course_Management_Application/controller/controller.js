@@ -18,7 +18,7 @@ module.exports = {
 
         let { name, duration, fees } = req.body;
 
-        if (id != null && name != null && duration != null && fees != null && name != '' && duration != '') {
+        if (name != null && duration != null && fees != null && name != '' && duration != '') {
 
             courses.create({ name, duration, fees }).then(() => {});
 

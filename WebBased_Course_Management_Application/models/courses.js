@@ -7,7 +7,6 @@ const Courses = sequelize.define('courses', {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primayKey: true,
         primaryKey: true,
     },
     name: {
