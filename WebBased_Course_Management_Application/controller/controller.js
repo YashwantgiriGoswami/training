@@ -18,9 +18,11 @@ module.exports = {
 
         let { name, duration, fees } = req.body;
 
-        courses.create({ name, duration, fees }).then(() => {
-            res.redirect("/");
-        });
+        if (id != null && name != null && duration != null && fees != null && name != '' && duration != '') {
+
+            courses.create({ name, duration, fees }).then(() => {});
+
+        }
     },
 
     getEditCourse: function(req, res) {
@@ -36,13 +38,14 @@ module.exports = {
 
         let { id, name, duration, fees } = req.body;
 
-        courses.update({
-            name: name,
-            duration: duration,
-            fees: fees
-        }, { where: { id: id } }).then(() => {
-            res.redirect("/");
-        });
+        if (id != null && name != null && duration != null && fees != null && name != '' && duration != '') {
+
+            courses.update({
+                name: name,
+                duration: duration,
+                fees: fees
+            }, { where: { id: id } }).then(() => {});
+        }
     },
 
     getDelete: function(req, res) {
