@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const route = express.Router();
-const Products = require('/home/ztlab/Documents/Assignments/nodeRestShop/models/product');
+const Products = require('../models/product');
 
 route.get('/', (req, res, next) => {
 
-    Products.find().then((result) => {
+    Products.find().select("name price _id").then((result) => {
 
         res.status(200).json(result);
 
@@ -14,12 +14,15 @@ route.get('/', (req, res, next) => {
 
 route.post('/', (req, res, next) => {
 
-    var { name, quantity } = req.body;
+    var {
+        name,
+        price
+    } = req.body;
 
     const product = new Products({
         _id: new mongoose.Types.ObjectId(),
         name: name,
-        quantity: quantity
+        price: price
     });
 
     product.save().then((result) => {
@@ -29,30 +32,43 @@ route.post('/', (req, res, next) => {
     res.status(200).json({
         message: `in post request product`,
         name: name,
-        quantity: quantity
+        price: price
 
     });
 });
 
 route.get('/:name', (req, res, next) => {
 
-    Products.find({ name: req.params.name }).then((result) => {
+    Products.findOne({
+        name: req.params.name
+    }).select("name price _id").then((result) => {
         res.status(200).json(result);
     });
 });
 
 route.delete('/:name', (req, res, next) => {
 
-    Products.remove({ name: req.params.name }).then((result) => {
+    Products.remove({
+        name: req.params.name
+    }).then((result) => {
         res.status(200).json(result);
     });
 });
 
-route.patch('/', (req, res, next) => {
+route.patch('/:name', (req, res, next) => {
 
-    res.status(201).json({
-        message: `in patch request product`
-    });
+    Products.updateOne({
+        name: req.params.name
+    }, {
+        $set: {
+            name: req.body.name,
+            price: req.body.price
+        }
+    }).then((result) => {
+        res.status(200).json(result);
+        console.log(result);
+    })
+
 });
 
 module.exports = route;
