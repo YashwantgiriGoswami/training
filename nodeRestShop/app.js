@@ -5,13 +5,15 @@ const mongoose = require('mongoose');
 const product = require('./api/products');
 const order = require('./api/order');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 
 const app = express();
 
 mongoose.connect('mongodb+srv://yashwant:yashwant@yashwant.us1kn.mongodb.net/Product?retryWrites=true&w=majority');
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/uploads', express.static('uploads'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // app.use((req, res, next) => {

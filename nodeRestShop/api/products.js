@@ -1,28 +1,55 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const route = express.Router();
+const multers = require('multer');
+
 const Products = require('../models/product');
+
+const storage = multers.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    },
+
+});
+
+const fileFilter = function(req, file, cb) {
+
+    if (file.mimetypes === 'image/jpeg' || file.mimetypes === 'image/png') {
+        cb(null, true); //accept it
+    } else {
+        cb(null, false); //reject it
+    }
+};
+
+const upload = multers({
+    storage: storage,
+    // limits: {
+    //     fileSize: 1024 * 1024 * 1024
+    // },
+    // fileFilter: fileFilter
+});
 
 route.get('/', (req, res, next) => {
 
-    Products.find().select("name price _id").then((result) => {
+    Products.find().select("name price _id productImage").then((result) => {
 
         res.status(200).json(result);
 
     });
 });
 
-route.post('/', (req, res, next) => {
+route.post('/', upload.single('productImage'), (req, res, next) => {
 
-    var {
-        name,
-        price
-    } = req.body;
+    var path = 'uploads/' + req.file.filename;
 
     const product = new Products({
         _id: new mongoose.Types.ObjectId(),
-        name: name,
-        price: price
+        name: req.body.name,
+        price: req.body.price,
+        productImage: path
     });
 
     product.save().then((result) => {
@@ -31,8 +58,9 @@ route.post('/', (req, res, next) => {
 
     res.status(200).json({
         message: `in post request product`,
-        name: name,
-        price: price
+        name: req.body.name,
+        price: req.body.price,
+        productImage: path
 
     });
 });
@@ -41,7 +69,7 @@ route.get('/:name', (req, res, next) => {
 
     Products.findOne({
         name: req.params.name
-    }).select("name price _id").then((result) => {
+    }).select("name price _id productImage").then((result) => {
         res.status(200).json(result);
     });
 });
