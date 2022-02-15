@@ -2,10 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-const product = require('./api/products');
-const order = require('./api/order');
+const product = require('./api/route/products');
+const order = require('./api/route/order');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const user = require('./api/route/user');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 
 app.use('/product', product);
 app.use('/order', order);
+app.use('/user', user);
 
 app.use((req, res, next) => {
 
