@@ -1,10 +1,10 @@
 databaseDetails = {
-    database: 'yashwantgirig',
-    username: 'yashwantgirig',
-    password: 'S5rhADhukD2s5u6mXbpVY5vSpvFjSnvD',
+    database: 'course_management',
+    username: 'root',
+    password: 'zt31',
     dialect: 'mysql',
-    host: "15.206.7.200",
-    port: "3310"
+    host: "127.0.0.1",
+    port: "3306"
 }
 
 Message = {
